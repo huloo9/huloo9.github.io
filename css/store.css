@@ -1,0 +1,77 @@
+#GameInfo{
+	/*position:absolute;*/
+	/*right: -164px;*/
+	/*top: 0;*/
+}
+@media screen and (min-width: 767.98px) {
+	#GameInfo{
+		position:absolute;
+		right: -164px;
+		top: 0;
+	}
+	#HistoricalDiscounts{
+		/*position:absolute;*/
+		/*left: -800px;*/
+	}
+}
+#HistoricalDiscounts {
+	display: block;
+}
+#GameInfo a{
+	position: relative;
+	/*float: left;*/
+	display:flex;
+	margin-top:6px;
+	align-items: flex-start;
+}
+#GameInfo a:hover{
+	margin-top:3px;
+}
+#GameInfo a:hover .match_name{
+		color: red;
+
+ }
+#GameInfo a:hover .match_subtitle{
+		color: red;
+
+ }
+#GameInfo a:hover .zidinyi{
+	color: red;
+ }
+#GameInfo a .match_name{
+	position: absolute;
+	white-space: nowrap;
+	/*float: left;*/
+	color: #ffffff;
+	/*align-self: flex-end;*/
+	/*order: 2;*/
+	left:160px;
+	bottom: 28px;
+}
+.zidinyi{
+	position: absolute;
+	white-space: nowrap;
+	/*float: left;*/
+	color: #ffffff;
+	/*align-self: flex-end;*/
+	/*order: 2;*/
+	left:160px;
+	bottom: 0;
+}
+#GameInfo a:hover .match_name{
+}
+#GameInfo a .match_img img{
+	/*order: 1;*/
+	width: 150px;
+}
+#GameInfo a .match_subtitle{
+	position: absolute;
+	white-space: nowrap;
+	left:160px;
+	/*float: left;*/
+	color: #ffffff;
+	bottom: 14px;
+
+	/*align-self: flex-end;*/
+	/*order: 3;*/
+}

@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.radius {
+    border-radius: 10px; /* 所有四个角都有 10 像素的圆角 */
+}
+.padding10{
+    padding-right: 10px
+}
+#log:hover{
+ animation: spin 2s ; /* 鼠标悬停时添加旋转动画 */
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.headers_log {
+    /*height: 60px;*/
+    /*width: 50px;*/
+    /*background: red;*/
+    display: block;
+    z-index: 1;
+    /*object-fit: contain;*/
+}
+
+.steam_user {
+    display: none;
+
+}
+
+.list_steam {
+    position: relative;
+}
+
+.list_steam i {
+    position: absolute;
+    right: 9px;
+    top: 11px;
+    color: #c2c2c2;
+}
+
+.headers_log p {
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-size: 30px;
+    text-align: center;
+    line-height: 60px;
+}
+.gg {
+    position: fixed;
+    left: 70px;
+    top: 300px;
+}
+/*.headers {*/
+/*    background-color: ();*/
+/*}*/
+.gradient-text {
+    background-image: linear-gradient(to right, #ff00cc, #3333ff);
+    background-clip: text;
+    -webkit-background-clip: text; /* 适用于 WebKit 浏览器 */
+    color: transparent;
+    -webkit-text-fill-color: transparent; /* 适用于 WebKit 浏览器 */
+}
+
+.headers {
+    box-shadow: 0 2px 4px #00000014;
+    background-color: rgba(255, 255, 255, 0);
+    /*position: fixed;*/
+    /*z-index: 100;*/
+}
+
+.iconlet {
+    display: none;
+}
+
+.headers {
+    /*position: fixed;*/
+    /*top: 0;*/
+
+}
+
+.layui-nav-item a span {
+    font-size: 14px; /* 自定义字体大小 */
+    /*color: #333; !* 自定义字体颜色 *!*/
+    /* 添加其他自定义样式 */
+}
+
+/* 设置导航右侧间隔的大小 */
+.layui-nav-item {
+    margin-right: 13px;
+}
+
+.billboard {
+    min-height: 300px;
+    /*background-color: red;*/
+}
+
+ul li {
+    color: #16baaa;
+}
+
+.body h1 {
+    margin-bottom: 10px;
+}
+
+#layui-nav-top {
+    z-index: 1;
+
+}
+
+.bg {
+    background-image: url('../img/背景图片2.png');
+    
+    /*引入图片如果是在css文件夹下直接写路径或加一个"./"
+    如果是上级目录如img文件夹，则加"../"表示在上级目录也就是与css同级的目录*/
+
+    background-position-x: center;
+    background-position-y: top;
+    /*background-size: revert;*/
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    /*width: 100;*/
+    background-size: cover;
+
+}
+ 
+
+body {
+    cursor: url('../img/pionner.cur'), default;
+
+    /*height: 300px !important;*/
+    background-color: #333333;
+}
+
+input {
+    cursor: url('../img/text.cur'), auto;
+}
+
+a, .layui-btn, dd,button, #DanMu,img,#score {
+    cursor: url('../img/link.cur'), pointer;
+}
+
+@media screen and (min-width: 767.98px) {
+
+    #layui-nav-top {
+        /*float: right;*/
+        /*flex: content;*/
+        display: flex;
+        /*flex-direction: row-reverse;*/
+        justify-content: flex-end;
+        /*flex: 1;*/
+    }
+
+}
+
+.opacity {
+    opacity: 0.9;
+}
+.opacity2 {
+    opacity: 0.9;
+}
+/*当屏幕分辨率小于767.98时显示一下事件*/
+@media screen and (max-width: 767.98px) {
+    .padding10{
+        padding-right: 0;
+        margin-bottom: 10px;
+}
+    .opacity {
+        opacity: 0.7;
+    }
+
+    .custom-nav {
+        /*align-content: ;*/
+    }
+
+    .layui-nav .layui-nav-item a {
+        padding: 0 5px;
+
+    }
+
+    .layui-nav-item a span {
+        font-size: 13px; /* 自定义字体大小 */
+        /*padding: 0 12px;*/
+        /* 添加其他自定义样式 */
+    }
+
+    .layui-container {
+        padding: 0;
+    }
+
+
+    /*在手机上的显示的样式*/
+    .headers i {
+        z-index: 2;
+        position: absolute;
+        line-height: 60px;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 23px;
+    }
+
+    /*伪类事假鼠标悬停*/
+    .headers i:hover {
+        color: #16b777;
+    }
+
+    .layui-nav .layui-nav-more {
+        right: -8px;
+    }
+}

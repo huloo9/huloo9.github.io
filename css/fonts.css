@@ -1,0 +1,29 @@
+@font-face {font-family: 'iconfont';
+    src: url('../fontsss/iconfont.eot');
+    src: url('../fontsss/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../fontsss/iconfont.woff') format('woff'),
+    url('../fontsss/iconfont.ttf') format('truetype'),
+    url('../fontsss/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-taobao:before {
+  content: "\e755";
+}
+
+.icon-weixinzhifu:before {
+  content: "\e60c";
+}
+
+.icon-danmukaiqi:before {
+  content: "\e613";
+}
+
+.icon-danmuguanbi:before {
+  content: "\e614";
+}
