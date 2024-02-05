@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>闲钱_压岁钱_没事请给我钱</title>
+    <meta name="keywords" content="压岁钱_闲钱_管理">
+    <meta name="description" content="MoneyGive是为每一个人提供的转账——发送压岁钱服务的">
+    
+    <link rel="icon" type="image/ico" href="/img/铁甲小宝1.png">
+    <link rel="stylesheet" href="./css/store.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    
+    
+    <link rel="stylesheet" href="./css/index.css">
+
+<!--   fonts.css里的图标未下载，去iconfont下载   -->
+<!--link rel="stylesheet" href="./css/fonts.css"-->
+
+
+    <style>
+        .rain {
+            position: absolute;
+            bottom: 100%;
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(143, 172, 191, 0.7) 100%);
+            animation: rain .5s linear infinite;
+        }
+
+        @keyframes rain {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(600px) rotate(-5deg);
+                opacity: 0;
+            }
+        }
+
+        .rain-holder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+    </style>
+    
+    <style>
+
+        .danmu-content {
+            position: absolute;
+            height: 100%;
+            top: 0;
+
+         width: 100%;
+        }
+
+        .opeate button {
+            margin: 10px;
+            border: 1px solid;
+        }
+
+        .screen {
+
+            /* width: 100vw; */
+            height: 100%;
+            will-change: 'auto';
+        }
+
+    </style>
+    
+    
+</head>
+
+<body class="bg">
+
+<!--雨滴效果-->
+<div class="rain-holder bg"></div>
+<!--广告-->
+
+<!--头部导航栏-->
+<div class="layui-row headers" style="">
+    <div style="position: fixed;top: -200px;color: rgb(250,250,250);display: none">
+        <h1>
+            <p>MoneyGive是为每一个人提供的转账——发送压岁钱服务的！！！</p>
+        </h1>
+    </div>
+    <i class="layui-icon layui-icon-shrink-right iconlet" style="color:#FFFFFF;"><span id="tips1"></span></i>
+    <!--log样式-->
+    <div class="headers_log layui-col-sm3 layui-anim layui-nav-child-c layui-anim-fadein" data-anim="layui-anim-fadein">
+        <a href="/steamlogin"><img src="img/铁甲小宝1.png" alt=""
+                                   class=""
+                                   style="max-height: 60px;vertical-align: top;border-radius: 50%;"></a>
+        <!--a href="/buygame"--><p class="gradient-text">压岁钱（闲钱）赠与</p></a>
+    </div>
+    <!--导航栏区域-->
+    <div class="layui-col-sm9 custom-nav layui-nav-child-c">
+        <ul class="layui-nav layui-hide-xs layui-anim layui-anim-downbit"
+            style="background-color:rgba(255, 255, 255, 0)" id="layui-nav-top">
+            <li class="layui-nav-item">
+                <a href="javascript:;"><span class="layui-icon layui-icon-gift"></span> 1号专栏</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/buygame"><span class="layui-icon layui-icon-cart-simple"></span><span> 在施工。。</span></a>
+                    </dd>
+                    <dd><a href="/BuyCard"><span class="layui-icon layui-icon-diamond"></span><span> 在施工。。</span></a>
+                    </dd>
+                    <dd><a href="/BuyWallet"><span class="layui-icon layui-icon-rmb"></span><span> 在施工。。</span></a>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><span class="layui-icon layui-icon-gift"></span> 2号专栏</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/buyapex"><span
+                            class="layui-icon layui-icon-cart-simple"></span><span> 在施工。。</span></a></dd>
+                    <dd><a href="/buyapex/orderlist"><span
+                            class="layui-icon layui-icon-form"></span><span> 在施工。。</span></a></dd>
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><span class="layui-icon layui-icon-list"></span>三号专栏</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd>
+                        <a href="/SteamGameInfo"><span
+                                class="layui-icon layui-icon-test "></span><span> 在施工。。</span></a>
+                    </dd>
+                    <dd>
+                        <a href="/buygame/apexcommunity"><span
+                                class="layui-icon layui-icon-group"></span><span> 在施工。。</span></a>
+                    </dd>
+                    <dd>
+                        <a href="/buygame/steamwallet"><span
+                                class="layui-icon layui-icon-template"></span><span> 在施工。。</span></a>
+                    </dd>
+
+                    <dd>
+                        <a href="/buygame/recommend"><span
+                                class="layui-icon layui-icon-chat"></span><span> 在施工。。</span></a>
+                    </dd>
+                    <dd><a href="/buygame/pay/Recharge"><span
+                            class="layui-icon layui-icon-rmb"></span><span> 在施工。。</span></a></dd>
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><span class="layui-icon layui-icon-link"></span> 记录查询</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/buygame/queryorder"><span
+                            class="layui-icon layui-icon-link"></span><span>  在施工。。</span></a></dd>
+                    <dd><a href="/BuyWallet/SteamWalletQueryOrder"><span
+                            class="layui-icon layui-icon-link"></span><span>  在施工。。</span></a></dd>
+                    <dd><a href="/buyapex/queryorder"><span
+                            class="layui-icon layui-icon-link"></span><span>  在施工。。</span></a></dd>
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="https://txc.qq.com/products/611319" target="_blank">
+                    <span class="layui-icon layui-icon-question"></span> 相关问题
+                </a>
+            </li>
+
+            <li class="layui-nav-item" lay-unselect>
+                <a href="javascript:;">
+                    <img src="./img/胡图图头像1.png"id="log" class="layui-nav-img">
+                </a>
+                <dl class="layui-nav-child">
+                    
+                        <dd><a href="javascript:;">钱包余额（自己心里有数）<span class="layui-badge">0</span></a></dd>
+                        <dd><a href="/buygame/pay/Recharge">余额充值（用心记）</a></dd>
+                        <hr>
+                        <dd style="text-align: center;"><a href="/steamlogin">登录(没用)</a></dd>
+                    
+                </dl>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!--内容部分-->
+<div class="layui-row body" style="position: relative">
+    <div class="danmu-content">
+        <div class="screen"></div>
+    </div>
+    
+        <div class="layui-row ">
+            <!--            公告-->
+            <div class="layui-col-sm-offset4 layui-col-sm4 billboard" style="color: #FFFFFF">
+                <div class="layui-row"><h2 class="layui-nav-child-c" style="color: #16baaa">网站公告</h2></div>
+                <hr class="layui-border-orange">
+                <div class="layui-row">1.<span style="color: red">使用前必须选择交易数量</span></div>
+                <div class="layui-row">2.<span style="">（............在施工，没有内容.........）</span></div>
+                <div class="layui-row">3.<span style="">观看视频教程</span></div>
+                <div class="layui-row">4.<span style="">看<a href="https://www.bilibili.com/video/BV1Z8411y7oc/"
+                                                            style="color: #ffb800 " target="_blank">视频教程(点我看教程)</a>（............在施工，没有内容.........）</span>
+                </div>
+                <div class="layui-row">5.<span style="color: red">（............在施工，没有内容.........）</span><span
+                        style="color: orange">（............在施工，没有内容.........）</span>
+                </div>
+                <div class="layui-row">6.<span style="">（............在施工，没有内容.........）</span></div>
+                <div class="layui-row">7.<span style="">（............在施工，没有内容.........）<a
+                        href="https://www.baidu.com/"
+                        style="color: #FFFFFF">自己百度</a>,（............在施工，没有内容.........）</span>
+                </div>
+                <div class="layui-row">8.<span style="color: red">当前折扣:1.00<span
+                        style="color: #ffb800 ">（............在施工，没有内容.........）</span></span></div>
+                <div class="layui-row opacity" style="margin-top: 10px">
+                    <div style="display: flex;">
+                        <div style="height: 100%;vertical-align: middle;">
+                            <i class="iconfont icon-danmukaiqi" style="font-size: 38px" id="DanMu"></i>
+                        </div>
+                        <div style="flex: 1;margin-left: 10px;margin-right: 10px;">
+                            <input type="text" placeholder="发条祝福的弹幕吧~" class="layui-input " id="d-input"
+                                   style="border-radius: 8px">
+                        </div>
+                        <button class="layui-btn layui-btn-primary layui-border-orange" id="sendDanmu"
+                                style="border-radius: 8px">发送
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--            交易的数据展示-->
+
+        <div class="layui-row" style="margin-top: 5px">
+            <div class="layui-col-sm-offset4 layui-col-sm4 opacity radius" id="HistoricalDiscounts"
+                 style="height:200px;background-color: #FFFFFF;">
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-sm-offset4 layui-col-sm4 opacity">
+                <table class="layui-table">
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>新</th>
+                        <th>年</th>
+                        <th>快</th>
+                        <th>乐</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>4</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--            提交框1-->
+        <!--div class="layui-row ">
+            <div class="layui-col-sm-offset4 layui-col-sm4 ">
+                <form class="layui-form" style="position: relative;">
+                    <div class="layui-input-wrap opacity">
+                        <div class="layui-input-prefix layui-input-split">
+                            <i class="layui-icon layui-icon-website"></i>
+                        </div>
+                        <input type="text" name="SteamBuy" id="Info" lay-verify="required"
+                               placeholder="（............在施工，没有内容.........）"
+                               class="layui-input">
+                    </div>
+                    <div id="GameInfo" class="layui-row" style="">
+                    </div>
+
+                    <hr>
+                    <div class="layui-input-wrap opacity">
+                        <div class="layui-input-prefix layui-input-split">
+                            <i class="layui-icon layui-icon-website"></i>
+                        </div>
+                        
+                            <input type="text" name="SteamUser" lay-verify="required" placeholder="（............在施工，没有内容.........）"
+                                   class="layui-input">
+                        
+                    </div>
+
+                    <hr>
+                    <div class="layui-input-wrap opacity">
+                        <div class="layui-input-prefix layui-input-split">
+                            <i class="layui-icon layui-icon-list"></i>
+                        </div>
+                        <input type="text" name="recommend" placeholder="（............在施工，没有内容.........）"
+                               class="layui-input">
+                    </div>
+                    <hr>
+                    <div>
+                        <select class="robot" lay-filter="demo-select-filter" name="monetary" lay-verify="required">
+                            
+                            <option value="23">CN</option>
+                            
+                        </select>
+                    </div>
+                    <br>
+                    <div class="layui-nav-child-c" style="">
+                        <button type="submit" class="layui-btn layui-btn-primary layui-border-orange" lay-submit
+                                lay-filter="submiturl" style="">确认信息
+                        </button>
+                    </div>
+                </form>
+            </div-->
+        </div>
+        <br>
+        <!--            提交框2-->
+        <div class="layui-row">
+            <form class="layui-form layui-col-sm-offset4 layui-col-sm4">
+                <!-- 第一个选择条 -->
+                <select lay-filter="selectOptionA" name="optionA" lay-verify="required">
+                    <option value="">微信 or 支付宝</option>
+                    <option value="A">---微信---</option>
+                    <option value="B">--支付宝--</option>
+                </select>
+    
+                <!-- 第二个选择条 -->
+                <select lay-filter="selectOptionB" name="optionB" lay-verify="required">
+                    <option value="">-选择你想赠送的金额-</option>
+                    <option value="option1">----测试员----</option>
+                    <option value="option2">-不太聪明的二蛋-</option>
+                    <option value="option3">---智慧的火根---</option>
+                </select>
+    
+                <div class="layui-nav-child-c" style="margin-top: 10px">
+                    <button type="button" class="layui-btn layui-btn-primary layui-border-orange" lay-submit lay-filter="submitBtn">查看图片</button>
+                </div>
+
+                <!--            隐藏选择支付界面--><!--控制了弹窗大小-->>
+                <div style="display: none" id="Pay_XuanZe">
+                    <h3 style="color:red;">微信无法支付可以使用淘宝支付</h3>
+                    <div style="display: flex">
+                        <span>
+                                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit
+                                            lay-filter="wx_submit">
+                                        <i class="iconfont">&#xe60c;</i> 微信支付
+                                    </button>
+                                </span>
+                        <span>
+                                <button type="submit" class="layui-btn layui-btn-primary" lay-submit
+                                        lay-filter="tb_submit"><i class="iconfont">&#xe755;</i>淘宝支付</button>
+                        </span>
+                        <span>
+                            
+                                <button class="layui-btn layui-btn-primary" type="submit" lay-submit
+                                        lay-filter="rmb"><span class="layui-icon layui-icon-rmb"></span>余额支付<span
+                                        class="layui-badge"></span></button>
+                            
+                            </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--           机器人列表-->
+
+        <div class="layui-row opacity">
+            <div class="layui-col-sm-offset4 layui-col-sm4" style="">
+                <div class="list_steam">
+                    <input type="text" placeholder="查看机器人列表" value="" readonly=""
+                           class="layui-input" style="cursor:pointer;margin-top: 10px" id="list_steam">
+                    <i class="layui-icon layui-icon-triangle-d"></i>
+                </div>
+            </div>
+            <div>
+                <div class="layui-col-sm-offset4 layui-col-sm4 steam_user">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>-迎福-</th>
+                            <th>-没想好-</th>
+                            <th>-没想好-</th>
+                            <th>-来财-</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                            
+
+                                <tr class="layui-anim layui-anim-down">
+                                    <td><img src="../static/img/qtdz.jpg" alt="" style="width: 50px;height: 50px"></td>
+                                    <td>
+                                        <a href="#"><span
+                                                style="color: #ffb800 ">测试员</span></a>
+                                    </td>
+                                    <td><span style="color:rgb(170,56,30)">图个好彩头</span></td>
+                                    
+                                        
+                                        <td>¥ 6.66/8.88</td>
+                                    
+                                </tr>
+                            
+                        
+                            
+
+                                <tr class="layui-anim layui-anim-down">
+                                    <td><img src="../static/img/jgcl.jpeg" alt="" style="width: 50px;height: 50px"></td>
+                                    <td>
+                                        <a href="#"><span
+                                                style="color: #ffb800 ">不太聪明的二蛋</span></a>
+                                    </td>
+                                    <td><span style="color:rgb(170,56,30)">小红包</span></td>
+                                    
+                                        
+                                        <td>¥ 100</td>
+                                    
+                                </tr>
+                            
+                        
+                            
+
+                                <tr class="layui-anim layui-anim-down">
+                                    <td><img src="../static/img/zleb.png" alt="" style="width: 50px;height: 50px"></td>
+                                    <td>
+                                        <a href="#"><span
+                                                style="color: #ffb800 ">智慧的火根</span></a>
+                                    </td>
+                                    <td><span style="color:rgb(170,56,30)">大红包</span></td>
+                                    
+                                        
+                                        <td>¥ 200</td>
+                                    
+                                </tr>
+                            
+                        
+                            
+
+                                <tr class="layui-anim layui-anim-down">
+                                    <td><img src="../static/img/sylj.jpeg" alt="" style="width: 50px;height: 50px"></td>
+                                    <td>
+                                        <a href="#"><span
+                                                style="color: #ffb800 ">（....施工中....）</span></a>
+                                    </td>
+                                    <td>###</td>
+                                    
+                                        
+                                        <td>¥ ###</td>
+                                    
+                                </tr>
+                            
+                            
+                        
+                            
+                        
+                            
+
+                                <tr class="layui-anim layui-anim-down">
+                                    <td><img src="../static/img/tjxb.jpeg" alt="" style="width: 50px;height: 50px"></td>
+                                    <td>
+                                        <a href="#"><span
+                                                style="color: #ffb800 ">000</span></a>
+                                    </td>
+                                    <td>000</td>
+                                    
+                                        
+                                        <td>¥ 000</td>
+                                    
+                                </tr>
+                            
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+</div>
+<!--底部-->
+<div class="layui-row footer" style="margin-top: 10px">
+    <div class="layui-nav-child-c" style="color: #c2c2c2;">
+        
+        
+        <a href="https://wx.mail.qq.com/" style="color: #c2c2c2;display: inline-block"><p>
+            1577698013@qq.com</p></a>
+        <div>
+            <span style="margin-top: 5px"><a href="https://space.bilibili.com/30896998" style="color: #c2c2c2;">BiliBili</a></span>/<span
+                style="margin-top: 5px"><a href="https://huloo9.github.io"
+                                           style="color: #c2c2c2;">huloo9.github.io</a></span>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+
+
+<script src="./layui/layui.js"></script>
+
+<script src="./js/BulletJs.min.js"></script>
+<script src="./js/fairyDustCursor.js"></script>
+<script src="./js/cookie.js"></script>
+<script src="./js/sakura.js"></script>
+
+
+<script>
+    // layui初始化
+    layui.use(['form', 'layer'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+
+        // 监听第一个选择条变化
+        form.on('select(selectOptionA)', function (data) {
+            // 处理第一个选择条的变化
+            console.log(data.elem);
+            console.log(data.value);
+            console.log(data.othis);
+        });
+
+        // 监听第二个选择条变化
+        form.on('select(selectOptionB)', function (data) {
+            // 处理第二个选择条的变化
+            console.log(data.elem);
+            console.log(data.value);
+            console.log(data.othis);
+        });
+
+        // 监听查看图片按钮点击
+        form.on('submit(submitBtn)', function (data) {
+            var optionA = data.field.optionA;
+            var optionB = data.field.optionB;
+
+            // 构造图片路径
+            var imagePath = './img/';
+
+            // 根据两个选择的组合弹出图片弹窗
+            switch (optionA + optionB) {
+                case "Aoption1":
+                    imagePath += '金额测试.png';
+                    break;
+                case "Aoption2":
+                    imagePath += '100-yuan.png';
+                    break;
+                case "Aoption3":
+                    imagePath += '200-yuan.png';
+                    break;
+                case "Boption1":
+                    imagePath += 'zfb-金额测试.jpg';
+                    break;
+                case "Boption2":
+                    imagePath += 'zfb-100yuan.jpg';
+                    break;
+                case "Boption3":
+                    imagePath += 'zfb-200yuan.jpg';
+                    break;
+                default:
+                    alert('请选择有效选项');
+                    return false; // 阻止弹窗
+            }
+
+            // 弹出图片弹窗
+            layer.open({
+                type: 1,
+                title: false,
+                closeBtn: 1,
+                area: ['300px', '300px'],
+                skin: 'layui-layer-nobg', // 没有背景色
+                shadeClose: true,
+                content: '<img src="' + imagePath + '" style="width:300px; height:300px;background-color:white;">'
+
+            });
+
+            return false; // 阻止表单提交
+        });
+    });
+</script>
+
+<script>
+    layui.use(['jquery'], function () {
+        let log_i = 0;
+        let list_steam = 0;
+        var $ = layui.$; // 使用layui中的$()函数
+        $('#DanMu').click(function () {
+            if (this.classList.contains('icon-danmukaiqi') === true) {
+                $(this).removeClass('icon-danmukaiqi')
+                $(this).addClass('icon-danmuguanbi')
+                $('.screen').css('display', 'none')
+            } else {
+                $(this).removeClass('icon-danmuguanbi')
+                $(this).addClass('icon-danmukaiqi')
+                $('.screen').css('display', 'block')
+            }
+        }) //弹幕开关按钮
+        $('#list_steam').click(function () {
+            if (list_steam === 0) {
+                list_steam++;
+                $('.steam_user').css('display', 'block');
+                $('.list_steam i').css({'Transform': 'rotate(180deg)',});
+
+            } else {
+                $('.steam_user').css({'display': 'none',});
+                $('.list_steam i').css({'Transform': 'rotate(360deg)',});
+                list_steam = 0;
+            }
+        })
+        $('.layui-nav-item').each(function (index, domEle) {
+            let href = $(domEle).find('a').attr('href');
+            if (href === window.location.pathname) {
+                $(this).addClass('layui-this')
+            }
+        });
+        $('.headers i').click(() => {
+            var element = document.getElementById('layui-nav-top')
+            if (element.classList.contains('layui-hide-xs') === true) {
+                $('#layui-nav-top').removeClass('layui-hide-xs')
+            } else {
+                $('#layui-nav-top').addClass('layui-hide-xs');
+            }
+
+        })
+    });
+</script>
+
+<script>
+    const makeItRain = () => {
+        let increment = 0;
+        let drops = "";
+        while (increment < 100) {
+            const randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+            const randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
+            increment += randoFiver;
+            drops += '<div class="rain" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: -' + randoHundo + 's; animation-duration: ' + (randoHundo / 30 + .5) + 's;"></div>';
+            document.querySelector('.rain-holder').innerHTML = drops;
+        }
+    }
+
+    makeItRain();
+</script>
+<script>
+    if (window.innerWidth < 767.98) {
+        layui.use(function () {
+            var $ = layui.$; // 使用layui中的$()函数
+            $(".gg").css('display', 'none')
+            if (localStorage.getItem('tutorial') === null) {
+                var layer = layui.layer;
+                layer.tips('可以点击此处打开导航栏', '#tips1', {
+                    shade: 0.3,
+                    time: 0,
+                    
+                    shadeClose: true
+                });
+                localStorage.setItem('tutorial', true);
+            }
+        });
+
+    }
+
+</script>
+
+
+</html>
