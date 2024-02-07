@@ -1,667 +1,409 @@
 <!DOCTYPE html>
-<html>
+<html lang="cn">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>闲钱_压岁钱_没事请给我钱</title>
-    <meta name="keywords" content="压岁钱_闲钱_管理">
-    <meta name="description" content="MoneyGive是为每一个人提供的转账——发送压岁钱服务的">
-    
-    <link rel="icon" type="image/ico" href="/img/铁甲小宝1.png">
-    <link rel="stylesheet" href="./css/store.css">
-    <link rel="stylesheet" href="./layui/css/layui.css">
-    
-    
-    <link rel="stylesheet" href="./css/index.css">
-
-<!--   fonts.css里的图标未下载，去iconfont下载   -->
-<!--link rel="stylesheet" href="./css/fonts.css"-->
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页</title>
+    <!-- 导入字体图标 -->
+    <link rel="stylesheet" href="./font/iconfont/iconfont.css">
 
     <style>
-        .rain {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* 字体无法选中 */
+            user-select: none;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            background-color: #ecf0f3;
+            color: #a0a5a8;
+        }
+
+        .shell {
+            position: relative;
+            width: 1000px;
+            min-width: 1000px;
+            min-height: 600px;
+            height: 600px;
+            padding: 25px;
+            background-color: #ecf0f3;
+            box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* 设置响应式 */
+        @media (max-width: 1200px) {
+            .shell {
+                transform: scale(0.7);
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .shell {
+                transform: scale(0.6);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .shell {
+                transform: scale(0.5);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .shell {
+                transform: scale(0.4);
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: absolute;
-            bottom: 100%;
-            width: 2px;
-            height: 60px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(143, 172, 191, 0.7) 100%);
-            animation: rain .5s linear infinite;
+            top: 0;
+            width: 600px;
+            height: 100%;
+            padding: 25px;
+            background-color: #ecf0f3;
+            transition: 1.25s;
         }
 
-        @keyframes rain {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(600px) rotate(-5deg);
-                opacity: 0;
-            }
+        .form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
         }
 
-        .rain-holder {
-            position: fixed;
+        .iconfont {
+            margin: 0 5px;
+            /*border: rgba(0, 0, 0, 0.5) 2px solid;
+            border-radius: 50%;*/
+            font-size: 35px;
+            padding: 3px;
+            opacity: 0.5;
+            transition: 0.1s;
+        }
+
+        .iconfont:hover {
+            opacity: 1;
+            transition: 0.15s;
+            cursor: pointer;
+        }
+
+        .form_input {
+            width: 350px;
+            height: 40px;
+            margin: 4px 0;
+            padding-left: 25px;
+            font-size: 13px;
+            letter-spacing: 0.15px;
+            border: none;
+            outline: none;
+            background-color: #ecf0f3;
+            transition: 0.25s ease;
+            border-radius: 8px;
+            box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+        }
+
+        .form_input:focus {
+            box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+        }
+
+        .form_span {
+            margin-top: 30px;
+            margin-bottom: 12px;
+        }
+
+        .form_link {
+            color: #181818;
+            font-size: 15px;
+            margin-top: 25px;
+            border-bottom: 1px solid #a0a5a8;
+            line-height: 2;
+            text-decoration: none;
+        }
+
+        .title {
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 3;
+            color: #181818;
+            letter-spacing: 10px;
+        }
+
+        .description {
+            font-size: 14px;
+            letter-spacing: 0.25px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .button {
+            width: 180px;
+            height: 50px;
+            border-radius: 25px;
+            margin-top: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.15px;
+            background-color: #4B70E2;
+            color: #f9f9f9;
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
+            border: none;
+            outline: none;
+        }
+
+        .a-container {
+            z-index: 100;
+            left: calc(100% - 600px);
+        }
+
+        .b-container {
+            left: calc(100% - 600px);
+            z-index: 0;
+        }
+
+        .switch {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
+            height: 100%;
+            width: 400px;
+            padding: 50px;
+            z-index: 200;
+            transition: 1.25s;
+            background-color: #ecf0f3;
+            overflow: hidden;
+            box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #d1d9e6;
         }
-    </style>
-    
-    <style>
 
-        .danmu-content {
+        .switch_circle {
             position: absolute;
-            height: 100%;
-            top: 0;
-
-         width: 100%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: #ecf0f3;
+            box-shadow: inset 8px 8px 12px #b8bec7, inset -8px -8px 12px #fff;
+            bottom: -60%;
+            left: -60%;
+            transition: 1.25s;
         }
 
-        .opeate button {
-            margin: 10px;
-            border: 1px solid;
+        .switch_circle-t {
+            top: -30%;
+            left: 60%;
+            width: 300px;
+            height: 300px;
         }
 
-        .screen {
-
-            /* width: 100vw; */
-            height: 100%;
-            will-change: 'auto';
+        .switch_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: absolute;
+            width: 400px;
+            padding: 50px 55px;
+            transition: 1.25s;
         }
 
+        .switch_button {
+            cursor: pointer;
+        }
+
+        .switch_button:hover,
+        .submit:hover {
+            box-shadow: 6px 6px 10px #d1d9e6, -6px -6px 10px #f9f9f9;
+            transform: scale(0.985);
+            transition: 0.25s;
+        }
+
+        .switch_button:active,
+        .switch_button:focus {
+            box-shadow: 2px 2px 6px #d1d9e6, -2px -2px 6px #f9f9f9;
+            transform: scale(0.97);
+            transition: 0.25s;
+        }
+
+        .is-txr {
+            left: calc(100% - 400px);
+            transition: 1.25s;
+            transform-origin: left;
+        }
+
+        .is-txl {
+            left: 0;
+            transition: 1.25s;
+            transform-origin: right;
+        }
+
+        .is-z {
+            z-index: 200;
+            transition: 1.25s;
+        }
+
+        .is-hidden {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            transition: 1.25s;
+        }
+
+        .is-gx {
+            animation: is-gx 1.25s;
+        }
+
+        @keyframes is-gx {
+
+            0%,
+            10%,
+            100% {
+                width: 400px;
+            }
+
+            30%,
+            50% {
+                width: 500px;
+            }
+        }
     </style>
-    
-    
 </head>
 
-<body class="bg">
+<body>
+    <div class="shell">
+        
 
-<!--雨滴效果-->
-<div class="rain-holder bg"></div>
-<!--广告-->
-
-<!--头部导航栏-->
-<div class="layui-row headers" style="">
-    <div style="position: fixed;top: -200px;color: rgb(250,250,250);display: none">
-        <h1>
-            <p>MoneyGive是为每一个人提供的转账——发送压岁钱服务的！！！</p>
-        </h1>
-    </div>
-    <i class="layui-icon layui-icon-shrink-right iconlet" style="color:#FFFFFF;"><span id="tips1"></span></i>
-    <!--log样式-->
-    <div class="headers_log layui-col-sm3 layui-anim layui-nav-child-c layui-anim-fadein" data-anim="layui-anim-fadein">
-        <a href="/steamlogin"><img src="img/铁甲小宝1.png" alt=""
-                                   class=""
-                                   style="max-height: 60px;vertical-align: top;border-radius: 50%;"></a>
-        <!--a href="/buygame"--><p class="gradient-text">压岁钱（闲钱）赠与</p></a>
-    </div>
-    <!--导航栏区域-->
-    <div class="layui-col-sm9 custom-nav layui-nav-child-c">
-        <ul class="layui-nav layui-hide-xs layui-anim layui-anim-downbit"
-            style="background-color:rgba(255, 255, 255, 0)" id="layui-nav-top">
-            <li class="layui-nav-item">
-                <a href="javascript:;"><span class="layui-icon layui-icon-gift"></span> 1号专栏</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="/buygame"><span class="layui-icon layui-icon-cart-simple"></span><span> 在施工。。</span></a>
-                    </dd>
-                    <dd><a href="/BuyCard"><span class="layui-icon layui-icon-diamond"></span><span> 在施工。。</span></a>
-                    </dd>
-                    <dd><a href="/BuyWallet"><span class="layui-icon layui-icon-rmb"></span><span> 在施工。。</span></a>
-                    </dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><span class="layui-icon layui-icon-gift"></span> 2号专栏</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="/buyapex"><span
-                            class="layui-icon layui-icon-cart-simple"></span><span> 在施工。。</span></a></dd>
-                    <dd><a href="/buyapex/orderlist"><span
-                            class="layui-icon layui-icon-form"></span><span> 在施工。。</span></a></dd>
-
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><span class="layui-icon layui-icon-list"></span>三号专栏</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd>
-                        <a href="/SteamGameInfo"><span
-                                class="layui-icon layui-icon-test "></span><span> 在施工。。</span></a>
-                    </dd>
-                    <dd>
-                        <a href="/buygame/apexcommunity"><span
-                                class="layui-icon layui-icon-group"></span><span> 在施工。。</span></a>
-                    </dd>
-                    <dd>
-                        <a href="/buygame/steamwallet"><span
-                                class="layui-icon layui-icon-template"></span><span> 在施工。。</span></a>
-                    </dd>
-
-                    <dd>
-                        <a href="/buygame/recommend"><span
-                                class="layui-icon layui-icon-chat"></span><span> 在施工。。</span></a>
-                    </dd>
-                    <dd><a href="/buygame/pay/Recharge"><span
-                            class="layui-icon layui-icon-rmb"></span><span> 在施工。。</span></a></dd>
-
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><span class="layui-icon layui-icon-link"></span> 记录查询</a>
-                <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                    <dd><a href="/buygame/queryorder"><span
-                            class="layui-icon layui-icon-link"></span><span>  在施工。。</span></a></dd>
-                    <dd><a href="/BuyWallet/SteamWalletQueryOrder"><span
-                            class="layui-icon layui-icon-link"></span><span>  在施工。。</span></a></dd>
-                    <dd><a href="/buyapex/queryorder"><span
-                            class="layui-icon layui-icon-link"></span><span>  在施工。。</span></a></dd>
-
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a href="https://txc.qq.com/products/611319" target="_blank">
-                    <span class="layui-icon layui-icon-question"></span> 相关问题
-                </a>
-            </li>
-
-            <li class="layui-nav-item" lay-unselect>
-                <a href="javascript:;">
-                    <img src="./img/胡图图头像1.png"id="log" class="layui-nav-img">
-                </a>
-                <dl class="layui-nav-child">
-                    
-                        <dd><a href="javascript:;">钱包余额（自己心里有数）<span class="layui-badge">0</span></a></dd>
-                        <dd><a href="/buygame/pay/Recharge">余额充值（用心记）</a></dd>
-                        <hr>
-                        <dd style="text-align: center;"><a href="/steamlogin">登录(没用)</a></dd>
-                    
-                </dl>
-            </li>
-
-        </ul>
-    </div>
-</div>
-<!--内容部分-->
-<div class="layui-row body" style="position: relative">
-    <div class="danmu-content">
-        <div class="screen"></div>
-    </div>
-    
-        <div class="layui-row ">
-            <!--            公告-->
-            <div class="layui-col-sm-offset4 layui-col-sm4 billboard" style="color: #FFFFFF">
-                <div class="layui-row"><h2 class="layui-nav-child-c" style="color: #16baaa">网站公告</h2></div>
-                <hr class="layui-border-orange">
-                <div class="layui-row">1.<span style="color: red">使用前必须选择交易数量</span></div>
-                <div class="layui-row">2.<span style="">（............在施工，没有内容.........）</span></div>
-                <div class="layui-row">3.<span style="">观看视频教程</span></div>
-                <div class="layui-row">4.<span style="">看<a href="https://www.bilibili.com/video/BV1Z8411y7oc/"
-                                                            style="color: #ffb800 " target="_blank">视频教程(点我看教程)</a>（............在施工，没有内容.........）</span>
+        <div class="container a-container" id="a-container">
+            <form action="next_page.html" method="GET" class="form" id="a-form"> <!-- 修改 action 属性为要跳转到的下一个页面的 URL，并设置 method 为 GET -->
+                <h2 class="form_title title">登入账号</h2>
+                <div class="form_icons">
+                    <i class="iconfont icon-weixin-copy"></i>
+                    <i class="iconfont icon-qq"></i>
+                    <i class="iconfont icon-github"></i>
                 </div>
-                <div class="layui-row">5.<span style="color: red">（............在施工，没有内容.........）</span><span
-                        style="color: orange">（............在施工，没有内容.........）</span>
-                </div>
-                <div class="layui-row">6.<span style="">（............在施工，没有内容.........）</span></div>
-                <div class="layui-row">7.<span style="">（............在施工，没有内容.........）<a
-                        href="https://www.baidu.com/"
-                        style="color: #FFFFFF">自己百度</a>,（............在施工，没有内容.........）</span>
-                </div>
-                <div class="layui-row">8.<span style="color: red">当前折扣:1.00<span
-                        style="color: #ffb800 ">（............在施工，没有内容.........）</span></span></div>
-                <div class="layui-row opacity" style="margin-top: 10px">
-                    <div style="display: flex;">
-                        <div style="height: 100%;vertical-align: middle;">
-                            <i class="iconfont icon-danmukaiqi" style="font-size: 38px" id="DanMu"></i>
-                        </div>
-                        <div style="flex: 1;margin-left: 10px;margin-right: 10px;">
-                            <input type="text" placeholder="发条祝福的弹幕吧~" class="layui-input " id="d-input"
-                                   style="border-radius: 8px">
-                        </div>
-                        <button class="layui-btn layui-btn-primary layui-border-orange" id="sendDanmu"
-                                style="border-radius: 8px">发送
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!--            交易的数据展示-->
-
-        <div class="layui-row" style="margin-top: 5px">
-            <div class="layui-col-sm-offset4 layui-col-sm4 opacity radius" id="HistoricalDiscounts"
-                 style="height:200px;background-color: #FFFFFF;">
-            </div>
-        </div>
-        <div class="layui-row">
-            <div class="layui-col-sm-offset4 layui-col-sm4 opacity">
-                <table class="layui-table">
-                    <colgroup>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th>新</th>
-                        <th>年</th>
-                        <th>快</th>
-                        <th>乐</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>4</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--            提交框1-->
-        <!--div class="layui-row ">
-            <div class="layui-col-sm-offset4 layui-col-sm4 ">
-                <form class="layui-form" style="position: relative;">
-                    <div class="layui-input-wrap opacity">
-                        <div class="layui-input-prefix layui-input-split">
-                            <i class="layui-icon layui-icon-website"></i>
-                        </div>
-                        <input type="text" name="SteamBuy" id="Info" lay-verify="required"
-                               placeholder="（............在施工，没有内容.........）"
-                               class="layui-input">
-                    </div>
-                    <div id="GameInfo" class="layui-row" style="">
-                    </div>
-
-                    <hr>
-                    <div class="layui-input-wrap opacity">
-                        <div class="layui-input-prefix layui-input-split">
-                            <i class="layui-icon layui-icon-website"></i>
-                        </div>
-                        
-                            <input type="text" name="SteamUser" lay-verify="required" placeholder="（............在施工，没有内容.........）"
-                                   class="layui-input">
-                        
-                    </div>
-
-                    <hr>
-                    <div class="layui-input-wrap opacity">
-                        <div class="layui-input-prefix layui-input-split">
-                            <i class="layui-icon layui-icon-list"></i>
-                        </div>
-                        <input type="text" name="recommend" placeholder="（............在施工，没有内容.........）"
-                               class="layui-input">
-                    </div>
-                    <hr>
-                    <div>
-                        <select class="robot" lay-filter="demo-select-filter" name="monetary" lay-verify="required">
-                            
-                            <option value="23">CN</option>
-                            
-                        </select>
-                    </div>
-                    <br>
-                    <div class="layui-nav-child-c" style="">
-                        <button type="submit" class="layui-btn layui-btn-primary layui-border-orange" lay-submit
-                                lay-filter="submiturl" style="">确认信息
-                        </button>
-                    </div>
-                </form>
-            </div-->
-        </div>
-        <br>
-        <!--            提交框2-->
-        <div class="layui-row">
-            <form class="layui-form layui-col-sm-offset4 layui-col-sm4">
-                <!-- 第一个选择条 -->
-                <select lay-filter="selectOptionA" name="optionA" lay-verify="required">
-                    <option value="">微信 or 支付宝</option>
-                    <option value="A">---微信---</option>
-                    <option value="B">--支付宝--</option>
-                </select>
-    
-                <!-- 第二个选择条 -->
-                <select lay-filter="selectOptionB" name="optionB" lay-verify="required">
-                    <option value="">-选择你想赠送的金额-</option>
-                    <option value="option1">----测试员----</option>
-                    <option value="option2">-不太聪明的二蛋-</option>
-                    <option value="option3">---智慧的火根---</option>
-                </select>
-    
-                <div class="layui-nav-child-c" style="margin-top: 10px">
-                    <button type="button" class="layui-btn layui-btn-primary layui-border-orange" lay-submit lay-filter="submitBtn">查看图片</button>
-                </div>
-
-                <!--            隐藏选择支付界面--><!--控制了弹窗大小-->>
-                <div style="display: none" id="Pay_XuanZe">
-                    <h3 style="color:red;">微信无法支付可以使用淘宝支付</h3>
-                    <div style="display: flex">
-                        <span>
-                                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit
-                                            lay-filter="wx_submit">
-                                        <i class="iconfont">&#xe60c;</i> 微信支付
-                                    </button>
-                                </span>
-                        <span>
-                                <button type="submit" class="layui-btn layui-btn-primary" lay-submit
-                                        lay-filter="tb_submit"><i class="iconfont">&#xe755;</i>淘宝支付</button>
-                        </span>
-                        <span>
-                            
-                                <button class="layui-btn layui-btn-primary" type="submit" lay-submit
-                                        lay-filter="rmb"><span class="layui-icon layui-icon-rmb"></span>余额支付<span
-                                        class="layui-badge"></span></button>
-                            
-                            </span>
-                    </div>
-                </div>
+                <span class="form_span">选择登录方式/电子邮箱登录</span>
+                <input type="text" class="form_input" placeholder="Email" name="email"> <!-- 给输入框添加 name 属性，以便获取用户输入的账号 -->
+                <input type="password" class="form_input" placeholder="Password" name="password"> <!-- 修改 input 类型为 password，以隐藏密码输入 -->
+                <a href="forgot_password.html"  class="form_link">忘记密码？</a> <!-- 修改忘记密码链接的 href 属性为相应的页面 URL -->
+                <button class="form_button button submit" onclick="login()">登 录</button> <!-- 修改 button 类型为 button，并添加 onclick 事件调用 JavaScript 函数 -->
             </form>
         </div>
-        <!--           机器人列表-->
 
-        <div class="layui-row opacity">
-            <div class="layui-col-sm-offset4 layui-col-sm4" style="">
-                <div class="list_steam">
-                    <input type="text" placeholder="查看机器人列表" value="" readonly=""
-                           class="layui-input" style="cursor:pointer;margin-top: 10px" id="list_steam">
-                    <i class="layui-icon layui-icon-triangle-d"></i>
+
+        <div class="container b-container" id="b-container">
+            
+            <form action="" method="" class="form" id="b-form">
+                <h2 class="form_title title">创建账号</h2>
+                <div class="form_icons">
+                    <i class="iconfont icon-weixin-copy"></i>
+                    <i class="iconfont icon-qq"></i>
+                    <i class="iconfont icon-github"></i>
                 </div>
-            </div>
-            <div>
-                <div class="layui-col-sm-offset4 layui-col-sm4 steam_user">
-                    <table class="layui-table">
-                        <colgroup>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                            <col>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>-迎福-</th>
-                            <th>-没想好-</th>
-                            <th>-没想好-</th>
-                            <th>-来财-</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        
-                            
+                <span class="form_span">选择注册方式/电子邮箱注册</span>
+                <input type="text" class="form_input" placeholder="Name">
+                <input type="text" class="form_input" placeholder="Email">
+                <input type="text" class="form_input" placeholder="Password">
 
-                                <tr class="layui-anim layui-anim-down">
-                                    <td><img src="../static/img/qtdz.jpg" alt="" style="width: 50px;height: 50px"></td>
-                                    <td>
-                                        <a href="#"><span
-                                                style="color: #ffb800 ">测试员</span></a>
-                                    </td>
-                                    <td><span style="color:rgb(170,56,30)">图个好彩头</span></td>
-                                    
-                                        
-                                        <td>¥ 0.66/8.88</td>
-                                    
-                                </tr>
-                            
-                        
-                            
+                <button class="form_button button submit">注 册</button>
 
-                                <tr class="layui-anim layui-anim-down">
-                                    <td><img src="../static/img/jgcl.jpeg" alt="" style="width: 50px;height: 50px"></td>
-                                    <td>
-                                        <a href="#"><span
-                                                style="color: #ffb800 ">不太聪明的二蛋</span></a>
-                                    </td>
-                                    <td><span style="color:rgb(170,56,30)">小红包</span></td>
-                                    
-                                        
-                                        <td>¥ 100</td>
-                                    
-                                </tr>
-                            
-                        
-                            
-
-                                <tr class="layui-anim layui-anim-down">
-                                    <td><img src="../static/img/zleb.png" alt="" style="width: 50px;height: 50px"></td>
-                                    <td>
-                                        <a href="#"><span
-                                                style="color: #ffb800 ">智慧的火根</span></a>
-                                    </td>
-                                    <td><span style="color:rgb(170,56,30)">大红包</span></td>
-                                    
-                                        
-                                        <td>¥ 200</td>
-                                    
-                                </tr>
-                            
-                        
-                            
-
-                                <tr class="layui-anim layui-anim-down">
-                                    <td><img src="../static/img/sylj.jpeg" alt="" style="width: 50px;height: 50px"></td>
-                                    <td>
-                                        <a href="#"><span
-                                                style="color: #ffb800 ">（....施工中....）</span></a>
-                                    </td>
-                                    <td>###</td>
-                                    
-                                        
-                                        <td>¥ ###</td>
-                                    
-                                </tr>
-                            
-                            
-                        
-                            
-                        
-                            
-
-                                <tr class="layui-anim layui-anim-down">
-                                    <td><img src="../static/img/tjxb.jpeg" alt="" style="width: 50px;height: 50px"></td>
-                                    <td>
-                                        <a href="#"><span
-                                                style="color: #ffb800 ">000</span></a>
-                                    </td>
-                                    <td>000</td>
-                                    
-                                        
-                                        <td>¥ 000</td>
-                                    
-                                </tr>
-                            
-                        
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            </form>
         </div>
-    
-</div>
-<!--底部-->
-<div class="layui-row footer" style="margin-top: 10px">
-    <div class="layui-nav-child-c" style="color: #c2c2c2;">
-        
-        
-        <a href="https://wx.mail.qq.com/" style="color: #c2c2c2;display: inline-block"><p>
-            1577698013@qq.com</p></a>
-        <div>
-            <span style="margin-top: 5px"><a href="https://space.bilibili.com/30896998" style="color: #c2c2c2;">BiliBili</a></span>/<span
-                style="margin-top: 5px"><a href="https://huloo9.github.io"
-                                           style="color: #c2c2c2;">huloo9.github.io</a></span>
+
+
+
+
+        <div class="switch" id="switch-cnt">
+            <div class="switch_circle"></div>
+            <div class="switch_circle switch_circle-t"></div>
+
+            <div class="switch_container" id="switch-c1">
+                <h2 class="switch_title title" style="letter-spacing: 0;">Hello MyFriend！</h2>
+                <p class="switch_description description">去注册一个账号，我们就是朋友了！</p>
+                <button class="switch_button button switch-btn">注 册</button>
+            </div>
+
+            <div class="switch_container is-hidden" id="switch-c2">
+                <h2 class="switch_title title" style="letter-spacing: 0;">Welcome Back！</h2>
+                <p class="switch_description description">已经有账号了嘛，快去登录吧！！！</p>
+                <button class="switch_button button switch-btn">登 录</button>
+            </div>
+
+
         </div>
     </div>
-</div>
 </body>
 
-
-
-
-
-<script src="./layui/layui.js"></script>
-
-<script src="./js/BulletJs.min.js"></script>
-<script src="./js/fairyDustCursor.js"></script>
-<script src="./js/cookie.js"></script>
-<script src="./js/sakura.js"></script>
-
-
+</html>
 <script>
-    // layui初始化
-    layui.use(['form', 'layer'], function () {
-        var form = layui.form;
-        var layer = layui.layer;
+    let switchCtn = document.querySelector("#switch-cnt");
+    let switchC1 = document.querySelector("#switch-c1");
+    let switchC2 = document.querySelector("#switch-c2");
+    let switchCircle = document.querySelectorAll(".switch_circle");
+    let switchBtn = document.querySelectorAll(".switch-btn");
+    let aContainer = document.querySelector("#a-container");
+    let bContainer = document.querySelector("#b-container");
+    let allButtons = document.querySelectorAll(".submit");
 
-        // 监听第一个选择条变化
-        form.on('select(selectOptionA)', function (data) {
-            // 处理第一个选择条的变化
-            console.log(data.elem);
-            console.log(data.value);
-            console.log(data.othis);
-        });
+    let getButtons = (e) => e.preventDefault()
+    let changeForm = (e) => {
+        // 修改类名
+        switchCtn.classList.add("is-gx");
+        setTimeout(function () {
+            switchCtn.classList.remove("is-gx");
+        }, 1500)
+        switchCtn.classList.toggle("is-txr");
+        switchCircle[0].classList.toggle("is-txr");
+        switchCircle[1].classList.toggle("is-txr");
 
-        // 监听第二个选择条变化
-        form.on('select(selectOptionB)', function (data) {
-            // 处理第二个选择条的变化
-            console.log(data.elem);
-            console.log(data.value);
-            console.log(data.othis);
-        });
+        switchC1.classList.toggle("is-hidden");
+        switchC2.classList.toggle("is-hidden");
+        aContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-txl");
+        bContainer.classList.toggle("is-z");
+    }
+    // 点击切换
+    let shell = (e) => {
+        for (var i = 0; i < allButtons.length; i++)
+            allButtons[i].addEventListener("click", getButtons);
+        for (var i = 0; i < switchBtn.length; i++)
+            switchBtn[i].addEventListener("click", changeForm)
+    }
+    window.addEventListener("load", shell);
 
-        // 监听查看图片按钮点击
-        form.on('submit(submitBtn)', function (data) {
-            var optionA = data.field.optionA;
-            var optionB = data.field.optionB;
-
-            // 构造图片路径
-            var imagePath = './img/';
-
-            // 根据两个选择的组合弹出图片弹窗
-            switch (optionA + optionB) {
-                case "Aoption1":
-                    imagePath += '0.66测试.png';
-                    break;
-                case "Aoption2":
-                    imagePath += '100-yuan.png';
-                    break;
-                case "Aoption3":
-                    imagePath += '200-yuan.png';
-                    break;
-                case "Boption1":
-                    imagePath += 'zfb-金额测试.jpg';
-                    break;
-                case "Boption2":
-                    imagePath += 'zfb-100yuan.jpg';
-                    break;
-                case "Boption3":
-                    imagePath += 'zfb-200yuan.jpg';
-                    break;
-                default:
-                    alert('请选择有效选项');
-                    return false; // 阻止弹窗
-            }
-
-            // 弹出图片弹窗
-            layer.open({
-                type: 1,
-                title: false,
-                closeBtn: 1,
-                area: ['300px', '300px'],
-                skin: 'layui-layer-nobg', // 没有背景色
-                shadeClose: true,
-                content: '<img src="' + imagePath + '" style="width:300px; height:300px;background-color:white;">'
-
-            });
-
-            return false; // 阻止表单提交
-        });
-    });
 </script>
 
-<script>
-    layui.use(['jquery'], function () {
-        let log_i = 0;
-        let list_steam = 0;
-        var $ = layui.$; // 使用layui中的$()函数
-        $('#DanMu').click(function () {
-            if (this.classList.contains('icon-danmukaiqi') === true) {
-                $(this).removeClass('icon-danmukaiqi')
-                $(this).addClass('icon-danmuguanbi')
-                $('.screen').css('display', 'none')
+    
+    <script>
+        //输入规定的账号密码以跳转指定网页
+        function login() {
+            var email = document.getElementsByName("email")[0].value; // 获取输入的账号
+            var password = document.getElementsByName("password")[0].value; // 获取输入的密码
+            if (email === "zhanghao123" && password === "123456") { // 检查账号和密码是否正确
+                window.location.href = "main_page.html"; // 如果正确，则跳转到指定的下一个页面
             } else {
-                $(this).removeClass('icon-danmuguanbi')
-                $(this).addClass('icon-danmukaiqi')
-                $('.screen').css('display', 'block')
+                alert("账号或密码错误，请重新输入！"); // 如果账号或密码错误，则显示相应的错误提示
             }
-        }) //弹幕开关按钮
-        $('#list_steam').click(function () {
-            if (list_steam === 0) {
-                list_steam++;
-                $('.steam_user').css('display', 'block');
-                $('.list_steam i').css({'Transform': 'rotate(180deg)',});
-
-            } else {
-                $('.steam_user').css({'display': 'none',});
-                $('.list_steam i').css({'Transform': 'rotate(360deg)',});
-                list_steam = 0;
-            }
-        })
-        $('.layui-nav-item').each(function (index, domEle) {
-            let href = $(domEle).find('a').attr('href');
-            if (href === window.location.pathname) {
-                $(this).addClass('layui-this')
-            }
-        });
-        $('.headers i').click(() => {
-            var element = document.getElementById('layui-nav-top')
-            if (element.classList.contains('layui-hide-xs') === true) {
-                $('#layui-nav-top').removeClass('layui-hide-xs')
-            } else {
-                $('#layui-nav-top').addClass('layui-hide-xs');
-            }
-
-        })
-    });
-</script>
-
-<script>
-    const makeItRain = () => {
-        let increment = 0;
-        let drops = "";
-        while (increment < 100) {
-            const randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-            const randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-            increment += randoFiver;
-            drops += '<div class="rain" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: -' + randoHundo + 's; animation-duration: ' + (randoHundo / 30 + .5) + 's;"></div>';
-            document.querySelector('.rain-holder').innerHTML = drops;
         }
-    }
-
-    makeItRain();
-</script>
-<script>
-    if (window.innerWidth < 767.98) {
-        layui.use(function () {
-            var $ = layui.$; // 使用layui中的$()函数
-            $(".gg").css('display', 'none')
-            if (localStorage.getItem('tutorial') === null) {
-                var layer = layui.layer;
-                layer.tips('可以点击此处打开导航栏', '#tips1', {
-                    shade: 0.3,
-                    time: 0,
-                    
-                    shadeClose: true
-                });
-                localStorage.setItem('tutorial', true);
-            }
-        });
-
-    }
-
-</script>
-
+    </script>
+    
+</body>
 
 </html>
