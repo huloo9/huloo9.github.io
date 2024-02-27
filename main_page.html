@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>闲钱_压岁钱_没事请给我钱</title>
-    <meta name="keywords" content="压岁钱_闲钱_管理">
-    <meta name="description" content="MoneyGive是为每一个人提供的转账——发送压岁钱服务的">
+    <title>联考帮~前途无忧教育</title>
+    <meta name="keywords" content="联考帮">
+    <meta name="description" content="联考帮 一个帮助学生远离考试压力的终极神器 永远的联考帮永远的考前帮">
     
-    <link rel="icon" type="image/ico" href="/img/铁甲小宝1.png">
+    <link rel="icon" type="image/ico" href="./img/智慧考试.png">
     <link rel="stylesheet" href="./css/store.css">
     <link rel="stylesheet" href="./layui/css/layui.css">
     
@@ -15,48 +15,15 @@
     <link rel="stylesheet" href="./css/index.css">
 
 <!--   fonts.css里的图标未下载，去iconfont下载   -->
-<!--link rel="stylesheet" href="./css/fonts.css"-->
-
-
-    <style>
-        .rain {
-            position: absolute;
-            bottom: 100%;
-            width: 2px;
-            height: 60px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(143, 172, 191, 0.7) 100%);
-            animation: rain .5s linear infinite;
-        }
-
-        @keyframes rain {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(600px) rotate(-5deg);
-                opacity: 0;
-            }
-        }
-
-        .rain-holder {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-        }
-    </style>
     
     <style>
-
-        .danmu-content {
+        .bullet {
             position: absolute;
-            height: 100%;
-            top: 0;
-
-         width: 100%;
+            font-size: 20px;
+            color: white;
+            text-shadow: 1px 1px 1px black;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .opeate button {
@@ -71,6 +38,9 @@
             will-change: 'auto';
         }
 
+
+
+
     </style>
     
     
@@ -80,13 +50,17 @@
 
 <!--雨滴效果-->
 <div class="rain-holder bg"></div>
+
+<!--弹幕效果-->
+<div id="danmu"></div>
+
 <!--广告-->
 
 <!--头部导航栏-->
 <div class="layui-row headers" style="">
     <div style="position: fixed;top: -200px;color: rgb(250,250,250);display: none">
         <h1>
-            <p>MoneyGive是为每一个人提供的转账——发送压岁钱服务的！！！</p>
+            <p>BeforeExam 专业答案永远考前 </p>
         </h1>
     </div>
     <i class="layui-icon layui-icon-shrink-right iconlet" style="color:#FFFFFF;"><span id="tips1"></span></i>
@@ -95,7 +69,7 @@
         <a href="/steamlogin"><img src="img/铁甲小宝1.png" alt=""
                                    class=""
                                    style="max-height: 60px;vertical-align: top;border-radius: 50%;"></a>
-        <!--a href="/buygame"--><p class="gradient-text">压岁钱（闲钱）赠与</p></a>
+        <!--a href="/buygame"--><p class="gradient-text">联 考 帮</p></a>
     </div>
     <!--导航栏区域-->
     <div class="layui-col-sm9 custom-nav layui-nav-child-c">
@@ -171,10 +145,10 @@
                 </a>
                 <dl class="layui-nav-child">
                     
-                        <dd><a href="javascript:;">钱包余额（自己心里有数）<span class="layui-badge">0</span></a></dd>
-                        <dd><a href="/buygame/pay/Recharge">余额充值（用心记）</a></dd>
+                        <dd><a href="javascript:;">钱包余额<span class="layui-badge">0</span></a></dd>
+                        <dd><a href="/buygame/pay/Recharge">余额充值</a></dd>
                         <hr>
-                        <dd style="text-align: center;"><a href="/steamlogin">登录(没用)</a></dd>
+                        <dd style="text-align: center;"><a href="./index.html">登录</a></dd>
                     
                 </dl>
             </li>
@@ -193,29 +167,31 @@
             <div class="layui-col-sm-offset4 layui-col-sm4 billboard" style="color: #FFFFFF">
                 <div class="layui-row"><h2 class="layui-nav-child-c" style="color: #16baaa">网站公告</h2></div>
                 <hr class="layui-border-orange">
-                <div class="layui-row">1.<span style="color: red">使用前必须选择交易数量</span></div>
-                <div class="layui-row">2.<span style="">（............在施工，没有内容.........）</span></div>
-                <div class="layui-row">3.<span style="">观看视频教程</span></div>
-                <div class="layui-row">4.<span style="">看<a href="https://www.bilibili.com/video/BV1Z8411y7oc/"
-                                                            style="color: #ffb800 " target="_blank">视频教程(点我看教程)</a>（............在施工，没有内容.........）</span>
-                </div>
-                <div class="layui-row">5.<span style="color: red">（............在施工，没有内容.........）</span><span
-                        style="color: orange">（............在施工，没有内容.........）</span>
-                </div>
-                <div class="layui-row">6.<span style="">（............在施工，没有内容.........）</span></div>
-                <div class="layui-row">7.<span style="">（............在施工，没有内容.........）<a
+              <div class="first-billboard" style="text-align:center;font-size: large;">
+                <div class="layui-row">1.<span style="color: red">使用前必须选择考试科目</span></div>
+                <div class="layui-row">2.<span style="">（---不分新老高考--考哪门选哪门---）</span></div>
+                <div class="layui-row">3.<span style="">---网站值得托福，交易完成后邮箱自动接受所购买答案---</span></div>
+                
+                <div class="layui-row">4.<span style="color: red">（---务必注意填写内容，答案一经发出拒不退款---）</span></div>
+
+                <div class="layui-row">5.<span style="color: orange">（---各地联考均有涉及，以连续6年帮助万名学生---）</span></div>
+
+                <div class="layui-row">6.<span style="">（---我们不生产答案，我们是答案的搬运工---）</span></div>
+                <div class="layui-row">7.<span style="">***-招募信息-***<a
                         href="https://www.baidu.com/"
-                        style="color: #FFFFFF">自己百度</a>,（............在施工，没有内容.........）</span>
+                        style="color: #FFFFFF"></a>（............在施工，没有内容.........）</span>
                 </div>
                 <div class="layui-row">8.<span style="color: red">当前折扣:1.00<span
-                        style="color: #ffb800 ">（............在施工，没有内容.........）</span></span></div>
+                        style="color: #ffb800 ">（............在施工，没有内容.........）</span></span>
+                </div>
+              </div>
                 <div class="layui-row opacity" style="margin-top: 10px">
                     <div style="display: flex;">
                         <div style="height: 100%;vertical-align: middle;">
                             <i class="iconfont icon-danmukaiqi" style="font-size: 38px" id="DanMu"></i>
                         </div>
                         <div style="flex: 1;margin-left: 10px;margin-right: 10px;">
-                            <input type="text" placeholder="发条祝福的弹幕吧~" class="layui-input " id="d-input"
+                            <input type="text" placeholder="如果稳就发个稳吧~" class="layui-input " id="d-input"
                                    style="border-radius: 8px">
                         </div>
                         <button class="layui-btn layui-btn-primary layui-border-orange" id="sendDanmu"
@@ -328,12 +304,12 @@
                 <select lay-filter="selectOptionB" name="optionB" lay-verify="required">
                     <option value="">-选择你想赠送的金额-</option>
                     <option value="option1">----测试员----</option>
-                    <option value="option2">-不太聪明的二蛋-</option>
-                    <option value="option3">---智慧的火根---</option>
+                    <option value="option2">-不太聪明的杰杰-</option>
+                    <option value="option3">---智慧的海军---</option>
                 </select>
     
                 <div class="layui-nav-child-c" style="margin-top: 10px;">
-                    <button type="button" class="layui-btn layui-btn-primary layui-border-orange"
+                    <button type="button" class="layui-btn layui-btn-primary layui-border"
                      lay-submit lay-filter="submitBtn" 
                      style="background-color:whitesmoke;font-size: 300;font-weight: bold;">提交</button>
                 </div>
@@ -415,7 +391,7 @@
                                     <td><img src="../static/img/jgcl.jpeg" alt="" style="width: 50px;height: 50px"></td>
                                     <td>
                                         <a href="#"><span
-                                                style="color: #ffb800 ">不太聪明的二蛋</span></a>
+                                                style="color: #ffb800 ">不太聪明的杰杰</span></a>
                                     </td>
                                     <td><span style="color:rgb(170,56,30)">小红包</span></td>
                                     
@@ -431,7 +407,7 @@
                                     <td><img src="../static/img/zleb.png" alt="" style="width: 50px;height: 50px"></td>
                                     <td>
                                         <a href="#"><span
-                                                style="color: #ffb800 ">智慧的火根</span></a>
+                                                style="color: #ffb800 ">智慧的海军</span></a>
                                     </td>
                                     <td><span style="color:rgb(170,56,30)">大红包</span></td>
                                     
@@ -630,20 +606,66 @@
 </script>
 
 <script>
-    const makeItRain = () => {
-        let increment = 0;
-        let drops = "";
-        while (increment < 100) {
-            const randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
-            const randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
-            increment += randoFiver;
-            drops += '<div class="rain" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: -' + randoHundo + 's; animation-duration: ' + (randoHundo / 30 + .5) + 's;"></div>';
-            document.querySelector('.rain-holder').innerHTML = drops;
-        }
+    // 获取弹幕容器
+    var container = document.getElementById('danmu');
+    // 定义弹幕数据
+    var data = [
+        { text: '稳', color: 'white' },
+        { text: '稳', color: 'white' },
+        { text: '老哥，稳', color: 'white' },
+        { text: '稳', color: 'white' }
+    ];
+    // 定义弹幕速度
+    var speed = 1;
+    // 定义弹幕间隔
+    var interval = 2000;
+    // 定义弹幕位置
+    var topArr = [];
+    for (var i = 0; i < 10; i++) {
+        topArr.push(i * 30);
     }
-
-    makeItRain();
+    // 定义弹幕索引
+    var index = 0;
+    // 定义弹幕定时器
+    var timer = setInterval(function() {
+        // 获取弹幕数据
+        var bullet = data[index];
+        // 创建弹幕元素
+        var span = document.createElement('span');
+        span.className = 'bullet';
+        span.innerText = bullet.text;
+        span.style.color = bullet.color;
+        // 随机获取弹幕位置
+        var top = topArr[Math.floor(Math.random() * topArr.length)];
+        span.style.top = top + 'px';
+        // 将弹幕元素添加到容器中
+        container.appendChild(span);
+        // 计算弹幕宽度
+        var width = span.offsetWidth;
+        // 定义弹幕起始位置
+        var left = container.offsetWidth;
+        span.style.left = left + 'px';
+        // 定义弹幕移动定时器
+        var bulletTimer = setInterval(function() {
+            // 计算弹幕当前位置
+            left -= speed;
+            span.style.left = left + 'px';
+            // 判断弹幕是否移出容器
+            if (left < -width) {
+                // 移除弹幕元素
+                container.removeChild(span);
+                // 清除弹幕移动定时器
+                clearInterval(bulletTimer);
+            }
+        }, 10);
+        // 更新弹幕索引
+        index++;
+        if (index >= data.length) {
+            index = 0;
+        }
+    }, interval);
 </script>
+
 <script>
     if (window.innerWidth < 767.98) {
         layui.use(function () {
